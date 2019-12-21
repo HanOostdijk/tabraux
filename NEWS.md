@@ -1,3 +1,8 @@
-# tabraux 0.0.0.9000
+### tabraux 0.0.1 20dec2019
 
-* Added a `NEWS.md` file to track changes to the package.
+- Function `check_times` is added
+
+
+### tabraux 0.0.0.9000 19dec2019
+
+- Functions `pc2` and `expand_notes` are added

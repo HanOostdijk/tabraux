@@ -50,3 +50,12 @@ test_that("expand_notes", {
   expect_identical(expand_notes(i13,sh_fl = 0),o13 )
   expect_identical(expand_notes(i14,sh_fl = 3),o14 )
 })
+## tests for check_times
+i15 = " 2. | 8*3 16*4 8|8*6| 8*3 16*4 8"
+o15 = check_times(i15,8)
+test_that("check_times", {
+  expect_identical(names(o15),c("times","counts") )
+  expect_identical(o15$times,"2. 8*3 16*4 8 8*6 8*3 16*4 8" )
+  expect_identical(o15$counts,rep(6,4) )
+})
+

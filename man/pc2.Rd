@@ -9,6 +9,9 @@ pc2(...)
 \arguments{
 \item{...}{Character strings with e.g. notes and times for tabr}
 }
+\value{
+Character or Noteworthy string depending on the inputs
+}
 \description{
 Simple expansion of \code{\link[tabr:pc]{tabr::pc}}: before concatenating the parts are handled by \code{\link[stringr:str_squish]{stringr::str_squish}}
 }
