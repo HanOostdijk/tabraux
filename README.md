@@ -17,3 +17,5 @@ auxilary package in the future, at the moment it contains the functions:
     calling `stringr::str_squish`
   - `expand_notes` : this copies the octave number from a previous
     specification and insert sharp and flat information where needed
+  - `check_times` : counts the notes in each measure to allow easy
+    checking
