@@ -42,6 +42,10 @@ i13 = 'a3  b r c4 g3 fx'
 o13 = 'a3 b3 r c4 g3 f3'
 i14 = 'a3  b r cx4 g3 fx'
 o14 = 'a3 b3 r c4 g#3 f3'
+i15 = 'a3 b c g f | a3 b c g f | a3 b c g f'
+o15 = 'a3 b c g f | a3 b c g f | a3 b c g f'
+o15a = "a3 b3 c#3 g3 f#3 | a3 b3 c#3 g3 f#3 | a3 b3 c#3 g3 f#3"
+o15b = "a3 b3 c#3 g3 f#3 a3 b3 c#3 g3 f#3 a3 b3 c#3 g3 f#3"
 test_that("expand_notes", {
   expect_identical(expand_notes(i9,sh_fl = 2),o9 )
   expect_identical(expand_notes(i10,sh_fl = c(0,3,-1)),o10 )
@@ -49,13 +53,15 @@ test_that("expand_notes", {
   expect_identical(expand_notes(i12,sh_fl = 1),o12 )
   expect_identical(expand_notes(i13,sh_fl = 0),o13 )
   expect_identical(expand_notes(i14,sh_fl = 3),o14 )
+  expect_identical(expand_notes(i15,sh_fl = 2,rmv_mi = F),o15a )
+  expect_identical(expand_notes(i15,sh_fl = 2,rmv_mi = T),o15b )
 })
 ## tests for check_times
-i15 = " 2. | 8*3 16*4 8|8*6| 8*3 16*4 8"
-o15 = check_times(i15,8)
+i16 = " 2. | 8*3 16*4 8|8*6| 8*3 16*4 8"
+o16 = check_times(i16,8)
 test_that("check_times", {
-  expect_identical(names(o15),c("times","counts") )
-  expect_identical(o15$times,"2. 8*3 16*4 8 8*6 8*3 16*4 8" )
-  expect_identical(o15$counts,rep(6,4) )
+  expect_identical(names(o16),c("times","counts") )
+  expect_identical(o16$times,"2. 8*3 16*4 8 8*6 8*3 16*4 8" )
+  expect_identical(o16$counts,rep(6,4) )
 })
 

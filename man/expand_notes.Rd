@@ -4,14 +4,14 @@
 \alias{expand_notes}
 \title{Expand notes}
 \usage{
-expand_notes(ns, sh_fl = 0)
+expand_notes(ns, sh_fl = 0, rmv_mi = T)
 }
 \arguments{
 \item{ns}{Character vector with notes for tabr}
 
-\item{sh_fl}{Integer indicating the number of sharps (when positive) or flats (when negative).
-In the latter case the number of flats is \code{(-sh_fl)}. When \code{ns} contains more than one character
-string the value(s) in \code{sh_fl} are recycled when necessary}
+\item{sh_fl}{Integer indicating the number of sharps (when positive) or flats (when negative). In the latter case the number of flats is \code{(-sh_fl)}. When \code{ns} contains more than one character string the value(s) in \code{sh_fl} are recycled when necessary}
+
+\item{rmv_mi}{Boolean should measure indications (\code{|}) be removed}
 }
 \value{
 Character vector of the same length as \code{ns} with the expanded character strings
@@ -34,6 +34,6 @@ e.g. with \code{sh_fl=1} the note 'fx3' will be noted as 'f3' and not 'f#3'
 \examples{
 \dontrun{
 expand_notes('a3 b c g f',sh_fl = 2)
-expand_notes(c('a3 b c g f','a3 b c g f','a3 b c g f'),sh_fl = c(2,3))
+expand_notes(c('a3 b c g f | a3 b c g f | a3 b c g f'),sh_fl = c(2,3),rmv_mi=T)
 }
 }

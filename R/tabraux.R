@@ -30,9 +30,8 @@ pc2 = function (...) {
 #' @export
 #' @name expand_notes
 #' @param ns Character vector with notes for tabr
-#' @param sh_fl Integer indicating the number of sharps (when positive) or flats (when negative).
-#' In the latter case the number of flats is `(-sh_fl)`. When `ns` contains more than one character
-#'  string the value(s) in `sh_fl` are recycled when necessary
+#' @param sh_fl Integer indicating the number of sharps (when positive) or flats (when negative). In the latter case the number of flats is `(-sh_fl)`. When `ns` contains more than one character string the value(s) in `sh_fl` are recycled when necessary
+#' @param rmv_mi Boolean should measure indications (`|`) be removed
 #' @return Character vector of the same length as `ns` with the expanded character strings
 #' @section Details:
 #' Two transformation are applied to the notes:
@@ -44,11 +43,14 @@ pc2 = function (...) {
 #' @examples
 #' \dontrun{
 #' expand_notes('a3 b c g f',sh_fl = 2)
-#' expand_notes(c('a3 b c g f','a3 b c g f','a3 b c g f'),sh_fl = c(2,3))
+#' expand_notes(c('a3 b c g f | a3 b c g f | a3 b c g f'),sh_fl = c(2,3),rmv_mi=T)
 #' }
 
-expand_notes <- function (ns,sh_fl=0) {
+expand_notes <- function (ns,sh_fl=0,rmv_mi=T) {
   expand_notes1 <- function(ns,sh_fl=0) {
+  if (rmv_mi == T) {
+    ns = stringr::str_replace_all(ns,"\\|"," ")
+  }
   ns = stringr::str_squish(ns)
   ns = strsplit(ns,' ')[[1]]
   num = stringr::str_extract(ns,"\\d+$")
@@ -78,9 +80,9 @@ expand_notes <- function (ns,sh_fl=0) {
       }
     }
   }
-  num[ns %in% 'r'] = ''
+  num[ns %in% c('r','|')] = ''
   ns = paste0(ns,num)
-  ns = stringr::str_replace(ns,"x","")
+  ns = stringr::str_replace_all(ns,"x","")
   paste(ns,collapse = ' ')
   }
   if (length(sh_fl) > length(ns))
