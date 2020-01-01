@@ -8,5 +8,5 @@
 Auxiliary functions for package tabr
 }
 \details{
-Contains two helper functions \link{pc2} and \link{expand_notes}
+Contains the helper functions \link{lilypond_version}, \link{check_times} and \link{expand_notes}
 }

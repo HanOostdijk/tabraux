@@ -5,5 +5,5 @@
 #' @docType package
 #' @name tabraux-package
 #' @details
-#' Contains two helper functions [pc2] and [expand_notes]
+#' Contains the helper functions [lilypond_version], [check_times] and [expand_notes]
 NULL

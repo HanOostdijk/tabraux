@@ -1,3 +1,8 @@
+### tabraux 0.0.2 01jan2019
+
+- Function `lilypond_version` is added
+- Function `pc2` is removed. `tabr::pc` has now the same functionality
+
 ### tabraux 0.0.1 20dec2019
 
 - Function `check_times` is added

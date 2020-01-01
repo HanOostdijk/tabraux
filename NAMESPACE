@@ -2,4 +2,4 @@
 
 export(check_times)
 export(expand_notes)
-export(pc2)
+export(lilypond_version)

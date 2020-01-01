@@ -1,28 +1,4 @@
 
-#' Concatenate with extra care
-#'
-#' Simple expansion of [`tabr::pc`]: before concatenating the parts are handled by [`stringr::str_squish`]
-#'
-#' @export
-#' @name pc2
-#' @param ... Character strings with e.g. notes and times for tabr
-#' @return Character or Noteworthy string depending on the inputs
-#' @examples
-#' \dontrun{
-#' pc2('a3 b c g  f ','  a3 b3 c4 g f')
-#' }
-
-pc2 = function (...) {
-  f1 <- function(x1) {
-    x2 = stringr::str_squish(x1)
-    if ('character' %in% class(x1) && nchar(x1)>0 && nchar(x2) == 0) x2 = " "
-    x2
-  }
-  x = list(...)
-  x = purrr::map(x,f1)
-  do.call(tabr::pc,x)
-}
-
 #' Expand notes
 #'
 #' A character string with incomplete note information for `tabr` can be expanded to the full information. See **Details** for the transformations that can be applied.
@@ -145,4 +121,22 @@ check_times  <- function(times, steps = 8) {
        counts=
          purrr::map_dbl(times1, ~check_times1(., steps))
   )
+}
+
+#' lilypond_version
+#'
+#' Retrieve the version number of Lilypond that is in use.
+#'
+#' @export
+#' @name lilypond_version
+#' @return Character string with the full version number (e.g. "2.19.83")
+#' @examples
+#' \dontrun{
+#' lilypond_version()
+#' [1] "2.19.83"
+#' }
+
+lilypond_version <- function() {
+  v = system("lilypond.exe --version",intern=T)
+  stringr::str_extract(v[1] ,"(?<=GNU LilyPond )(.*)$")
 }
