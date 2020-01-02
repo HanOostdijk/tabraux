@@ -20,3 +20,5 @@ contains the functions:
     checking
   - `lilypond_version` : returns the version of the lilypond executable
     (Windows only)
+  - `edit_phrase` : function that edits a phrase in a ‘musical phrase’
+    or ‘track’ with `sub` or `gsub`

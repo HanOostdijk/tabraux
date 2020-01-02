@@ -22,5 +22,6 @@ While working with the package to copy music sheets (my use case being to 'trans
 - `expand_notes` : this copies the octave number from a previous specification and insert sharp and flat information where needed 
 - `check_times` : counts the notes in each measure to allow easy checking
 - `lilypond_version` : returns the version of the lilypond executable (Windows only)
+- `edit_phrase` : function that edits a phrase in a 'musical phrase' or 'track' with `sub` or `gsub` 
 
 

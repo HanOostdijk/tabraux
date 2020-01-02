@@ -140,3 +140,47 @@ lilypond_version <- function() {
   v = system("lilypond.exe --version",intern=T)
   stringr::str_extract(v[1] ,"(?<=GNU LilyPond )(.*)$")
 }
+
+
+#' Edit a phrase
+#'
+#' The `edit_phrase` is a wrapper around the R base functions `sub` and `gsub` to change the `phrase` in a 'musical phrase' or a 'track'
+#'
+#' @export
+#' @name edit_phrase
+#' @param obj Object to change. Only objects of class `phrase` or `track` are supported
+#' @param pattern Character string to be used as pattern in `sub` and `gsub` (depending on parameter `all`)
+#' @param replacement Character string to be used as replacement in `sub` and `gsub` (depending on parameter `all`)
+#' @param all Boolean indicating if all patterns found should be replaced (when TRUE) or only the first (when FALSE)
+#' @return an object of the same type as `obj` with possibly (i.e. when the pattern is found) a replaced 'phrase'
+#' @section Details:
+#' See the documentation for the use of [sub] and [gsub].
+#' @examples
+#' \dontrun{
+#' #include a test function
+#' }
+edit_phrase <- function (obj, pattern, replacement, all = T) {
+  if ('phrase' %in% class(obj)) {
+    ot = 'p'
+    np = obj
+  }
+  else if ('track' %in% class(obj)) {
+    ot = 't'
+    np = obj[['phrase']]
+  } else
+    stop('edit_phrase: invalid type for obj')
+  if (all == T)
+    np2 = gsub(pattern, replacement, np)
+  else
+    np2 = sub(pattern, replacement, np)
+  if (ot == 'p') {
+    class(np2) <- class(obj)
+    obj = np2
+  }
+  else  {
+    np2 = list(np2)
+    class(np2[[1]]) <- class(np[[1]])
+    obj[['phrase']] = np2
+  }
+  obj
+}
