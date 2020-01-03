@@ -56,7 +56,7 @@ expand_notes <- function (ns,sh_fl=0,rmv_mi=T) {
       }
     }
   }
-  num[ns %in% c('r','|')] = ''
+  num[ns %in% c('r','s','|')] = ''
   ns = paste0(ns,num)
   ns = stringr::str_replace_all(ns,"x","")
   paste(ns,collapse = ' ')
