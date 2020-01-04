@@ -19,6 +19,8 @@ o15b = "a3 b3 c#3 g3 f#3 a3 b3 c#3 g3 f#3 a3 b3 c#3 g3 f#3"
 i15c = 'a3 b3 r | c4 s f3'
 o15c = "a3 b3 r c#4 s f#3"
 o15d = "a3 b3 r | c#4 s f#3"
+i15e = 'a3 b3 ^1 c'
+o15e = 'a3 b3 ^1 c3'
 test_that("expand_notes", {
   expect_identical(expand_notes(i9,sh_fl = 2),o9 )
   expect_identical(expand_notes(i10,sh_fl = c(0,3,-1)),o10 )
@@ -29,6 +31,7 @@ test_that("expand_notes", {
   expect_identical(expand_notes(i15,sh_fl = 2,rmv_mi = F),o15a )
   expect_identical(expand_notes(i15c,sh_fl = 2,rmv_mi = T),o15c )
   expect_identical(expand_notes(i15c,sh_fl = 2,rmv_mi = F),o15d )
+  expect_identical(expand_notes(i15e,sh_fl = 0,rmv_mi = F),o15e )
 })
 ## tests for check_times
 i16 = " 2. | 8*3 16*4 8|8*6| 8*3 16*4 8"

@@ -29,8 +29,8 @@ expand_notes <- function (ns,sh_fl=0,rmv_mi=T) {
   }
   ns = stringr::str_squish(ns)
   ns = strsplit(ns,' ')[[1]]
-  num = stringr::str_extract(ns,"\\d+$")
-  ns = stringr::str_replace(ns,"\\d+$","")
+  num = stringr::str_extract(ns,"(?<!\\^)\\d+$")
+  ns = stringr::str_replace(ns,"(?<!\\^)\\d+$","")
   prev = "3"
   notes = c("f","c","g","d","a","e","b")
   for (i in seq_along(num) ) {
@@ -56,7 +56,7 @@ expand_notes <- function (ns,sh_fl=0,rmv_mi=T) {
       }
     }
   }
-  num[ns %in% c('r','s','|')] = ''
+  num[stringr::str_detect(ns,"r|s|\\||\\^") ] = ''
   ns = paste0(ns,num)
   ns = stringr::str_replace_all(ns,"x","")
   paste(ns,collapse = ' ')
