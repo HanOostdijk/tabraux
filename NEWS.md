@@ -1,3 +1,7 @@
+### tabraux 0.0.3 25jan2019
+
+- Function `phrase2` is added
+
 ### tabraux 0.0.2 01jan2019
 
 - Function `lilypond_version` is added

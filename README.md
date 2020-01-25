@@ -22,3 +22,5 @@ contains the functions:
     (Windows only)
   - `edit_phrase` : function that edits a phrase in a ‘musical phrase’
     or ‘track’ with `sub` or `gsub`
+  - `phrase2` : function that allows inserting an anchor point in a
+    phrase
