@@ -27,7 +27,13 @@
 #' }
 
 phrase2 <- function(notes, info = NULL, string = NULL, bar = NULL){
-  is.note <- function(x, na.rm = FALSE){
+  is_note_3 <- tabr::is_note
+  phrase_3 <- tabr::phrase
+  .phrase_3 <- tabr:::.phrase
+  on.exit(assignInNamespace("phrase", phrase_3, ns = "tabr"),add=T)
+  on.exit(assignInNamespace(".phrase", .phrase_3, ns = "tabr"),add=T)
+  on.exit(assignInNamespace("is_note", is_note_3, ns = "tabr"),add=T)
+  is_note_2 <- function(x, na.rm = FALSE){
     if(na.rm){
       x <- x[!is.na(x)]
       if(!is.character(x)) x <- as.character(x)
@@ -37,8 +43,8 @@ phrase2 <- function(notes, info = NULL, string = NULL, bar = NULL){
     y2 <- gsub("\\d|,|'|_|#|~|\\*", "", x)
     y1 & nchar(y2) == 1 & y2 == substr(x, 1, 1) & !grepl("(r|s)\\d", x)
   }
-  environment(is.note) <- asNamespace("tabr")
-  phrase <- function(notes, info = NULL, string = NULL, bar = NULL){
+  environment(is_note_2) <- asNamespace("tabr")
+  phrase_2 <- function(notes, info = NULL, string = NULL, bar = NULL){
     if(is.null(info)){
       if(!inherits(notes, "music")) notes <- as_music(notes)
       if(is.null(string)) string <- music_strings(notes)
@@ -113,8 +119,8 @@ phrase2 <- function(notes, info = NULL, string = NULL, bar = NULL){
     }
     do.call(c, x)
   }
-  environment(phrase) <- asNamespace("tabr")
-  .phrase <- function(notes, info, string){
+  environment(phrase_2) <- asNamespace("tabr")
+  .phrase_2 <- function(notes, info, string){
     notes <- purrr::map_chr(notes, .tabsub)
     info <- purrr::map_chr(info, .tabsub)
     bend <- which(purrr::map_int(info, ~{
@@ -149,11 +155,15 @@ phrase2 <- function(notes, info = NULL, string = NULL, bar = NULL){
     if(length(dead)) notes2[dead] <- paste("\\deadNote", notes2[dead])
     gsub("\\\\x", "", notes2)
   }
-  environment(.phrase) <- asNamespace("tabr")
+  environment(.phrase_2) <- asNamespace("tabr")
+
+  assignInNamespace("phrase", phrase_2, ns = "tabr")
+  assignInNamespace(".phrase", .phrase_2, ns = "tabr")
+  assignInNamespace("is_note", is_note_2, ns = "tabr")
 
   notes = trimws(gsub("\\s\\s+", " ",notes))
   if (!is.null(info)) info =  trimws(gsub("\\s\\s+", " ",info))
-  phrase(notes, info = info, string = string, bar = bar)
+  phrase_2(notes, info = info, string = string, bar = bar)
 }
 
 
