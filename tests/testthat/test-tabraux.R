@@ -69,4 +69,13 @@ test_that("edit_phrase", {
   expect_identical(class(o21$phrase[[1]]),c("phrase","character") )
   expect_identical(as.character(o21$phrase[[1]]),"<e>4 <a>4 <g>4 <f>4")
 })
+## tests for phrase2
+notes1 <- "e f g f"
+info1 <- "4*4"
+test_that("phrase2 works like phrase", {
+  expect_identical(p(notes1,info1),p2(notes1,info1) )
+  expect_identical(p2(notes1,info1),p3(notes1,info1) )
+})
+
+
 
