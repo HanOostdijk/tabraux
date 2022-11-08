@@ -30,7 +30,6 @@ cond_transpose <- function (notes, lowest="e,",numeric=F) {
   f1 <- lu_tab$f1
   f2 <- lu_tab$f2
   me  <- match(lowest, f1)
-  browser()
 
   mn1tf <- stringr::str_count(mn, "[abcdefg]")  == 1
 
