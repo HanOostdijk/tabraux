@@ -81,10 +81,11 @@ test_that("phrase2 works like phrase", {
   expect_identical(p2(notes1,info1),p3(notes1,info1) )
 })
 ## test for cond_transpose
-test_that("phrase2 works like phrase", {
+test_that("cond_transpose works fine", {
   expect_identical(cond_transpose("cis, des, ees, f,"),"c# c# d# f," )
   expect_identical(cond_transpose("cis, des, ees, f,",lowest='d,'),"c# c# d#, f," )
   expect_identical(cond_transpose("cis, desees, ees, f,",lowest='d,'), "c# c#d#, d#, f," )
   expect_identical(cond_transpose("cis, des,ees, ees, f,",lowest='d,'),"c# c#d#, d#, f,")
+  expect_identical(cond_transpose("c2 dis2 e2 f2",lowest='e2',numeric=T),"c3 d#3 e2 f2")
 })
 
