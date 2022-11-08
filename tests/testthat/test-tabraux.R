@@ -1,4 +1,8 @@
-library(tabr)
+suppressWarnings(
+suppressPackageStartupMessages(
+  library(tabr)
+)
+)
 ## tests for expand_notes
 i9 = 'a3  b r c4 g3 f'
 o9 = "a3 b3 r c#4 g3 f#3"
@@ -45,7 +49,7 @@ test_that("check_times", {
 o17 = lilypond_version()
 test_that("lilypond_version", {
   expect_identical(class(o17),"character" )
-  expect_true(grepl('^[.0123456789]{7,8}$',o17))
+  expect_true(grepl('^[.0123456789]{6,8}$',o17))
 })
 ## tests for edit_phrase
 notes1 <- "e f g f"
@@ -76,6 +80,11 @@ test_that("phrase2 works like phrase", {
   expect_identical(p(notes1,info1),p2(notes1,info1) )
   expect_identical(p2(notes1,info1),p3(notes1,info1) )
 })
-
-
+## test for cond_transpose
+test_that("phrase2 works like phrase", {
+  expect_identical(cond_transpose("cis, des, ees, f,"),"c# c# d# f," )
+  expect_identical(cond_transpose("cis, des, ees, f,",lowest='d,'),"c# c# d#, f," )
+  expect_identical(cond_transpose("cis, desees, ees, f,",lowest='d,'), "c# c#d#, d#, f," )
+  expect_identical(cond_transpose("cis, des,ees, ees, f,",lowest='d,'),"c# c#d#, d#, f,")
+})
 
