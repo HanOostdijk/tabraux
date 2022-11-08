@@ -17,7 +17,8 @@
 
 cond_transpose <- function (notes, lowest="e,") {
   # transpose notes below 'lowest' one octave upwards
-  # music contains no flats
+  notes <- stringr::str_replace_all(notes, c("is" = "#", "es" = "_"))
+  notes <- tabr:::.flat_to_sharp(notes)
 
   mn <- stringr::str_split(as.character(notes), " ")[[1]]
 
