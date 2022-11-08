@@ -4,10 +4,10 @@
 \alias{cond_transpose}
 \title{transpose above with octave when below certain note}
 \usage{
-cond_transpose(mymusic, lowest)
+cond_transpose(notes, lowest = "e,")
 }
 \arguments{
-\item{mymusic}{piece of music}
+\item{notes}{character string with notes}
 
 \item{lowest}{lowest note that will not be transposed}
 }
@@ -16,4 +16,12 @@ transposed piece of music
 }
 \description{
 Useful for e.g. guitar where e (or d) is the lowest note
+}
+\examples{
+\dontrun{
+  cond_transpose("c, d, e, f,")
+#  [1] "c d e, f,"
+  cond_transpose("c, d, e, f,",lowest='d,')
+#  [1] "c d, e, f,"
+}
 }

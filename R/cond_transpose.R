@@ -3,16 +3,23 @@
 #' Useful for e.g. guitar where e (or d) is the lowest note
 #'
 #' @name cond_transpose
-#' @param mymusic piece of music
+#' @param notes character string with notes
 #' @param lowest  lowest note that will not be transposed
 #' @return transposed piece of music
 #' @export
+#' @examples
+#' \dontrun{
+#'   cond_transpose("c, d, e, f,")
+#' #  [1] "c d e, f,"
+#'   cond_transpose("c, d, e, f,",lowest='d,')
+#' #  [1] "c d, e, f,"
+#' }
 
-cond_transpose <- function (mymusic, lowest) {
+cond_transpose <- function (notes, lowest="e,") {
   # transpose notes below 'lowest' one octave upwards
   # music contains no flats
-  ms <- music_split(mymusic)
-  mn <- stringr::str_split(as.character(ms$notes), " ")[[1]]
+
+  mn <- stringr::str_split(as.character(notes), " ")[[1]]
 
   lu_tab <- create_lookup_table()
   f1 <- lu_tab$f1
@@ -34,15 +41,7 @@ cond_transpose <- function (mymusic, lowest) {
   })
   mn[!mn1tf] <- mn2
 
-  as_music(
-    mn,
-    info = ms$info,
-    lyrics = ms$lyrics,
-    key = ms$key,
-    time = ms$time,
-    tempo = ms$tempo,
-    accidentals = ms$accidentals
-  )
+  paste0(mn,collapse = ' ')
 }
 
 cond_transpose1 <- function (mn, me, f1, f2) {
