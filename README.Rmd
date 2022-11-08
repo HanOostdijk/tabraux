@@ -24,5 +24,6 @@ While working with the package to copy music sheets (my use case being to 'trans
 - `lilypond_version` : returns the version of the lilypond executable (Windows only)
 - `edit_phrase` : function that edits a phrase in a 'musical phrase' or 'track' with `sub` or `gsub` 
 - `phrase2` : function that allows inserting an anchor point in a phrase
+- `cond_transpose` : transposes in a musical script notes below a certain note (e.g. 'e' or 'd' upwards with an octave 
 
 

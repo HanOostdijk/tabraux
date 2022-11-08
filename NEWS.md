@@ -1,3 +1,7 @@
+### tabraux 0.0.4 08nov2022
+
+- Function `cond_transpose` is added
+
 ### tabraux 0.0.3 25jan2019
 
 - Function `phrase2` is added

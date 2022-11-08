@@ -14,13 +14,14 @@ notes the octave and sharp-flat information. While I may add more
 functions to this auxilary package in the future, at the moment it
 contains the functions:
 
-  - `expand_notes` : this copies the octave number from a previous
-    specification and insert sharp and flat information where needed
-  - `check_times` : counts the notes in each measure to allow easy
-    checking
-  - `lilypond_version` : returns the version of the lilypond executable
-    (Windows only)
-  - `edit_phrase` : function that edits a phrase in a ‘musical phrase’
-    or ‘track’ with `sub` or `gsub`
-  - `phrase2` : function that allows inserting an anchor point in a
-    phrase
+- `expand_notes` : this copies the octave number from a previous
+  specification and insert sharp and flat information where needed
+- `check_times` : counts the notes in each measure to allow easy
+  checking
+- `lilypond_version` : returns the version of the lilypond executable
+  (Windows only)
+- `edit_phrase` : function that edits a phrase in a ‘musical phrase’ or
+  ‘track’ with `sub` or `gsub`
+- `phrase2` : function that allows inserting an anchor point in a phrase
+- `cond_transpose` : transposes in a musical script notes below a
+  certain note (e.g. ‘e’ or ‘d’ upwards with an octave
