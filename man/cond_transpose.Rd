@@ -25,7 +25,7 @@ Useful for e.g. guitar where e (or d) is the lowest note
 #  [1] "c d e, f,"
   cond_transpose("c, d, e, f,",lowest='d,')
 #  [1] "c d, e, f,"
-cond_transpose("c2 d2 e2 f2",lowest='e2',numeric=T)
-#  [1] "c d, e, f,"
+  cond_transpose("d4 a3 g#4 ^1 a3b3f4",lowest='d4',numeric=T)
+# [1] "d4 a4 g#4 ^1 a4b4f4"
 }
 }

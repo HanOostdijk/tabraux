@@ -82,10 +82,17 @@ test_that("phrase2 works like phrase", {
 })
 ## test for cond_transpose
 test_that("cond_transpose works fine", {
-  expect_identical(cond_transpose("cis, des, ees, f,"),"c# c# d# f," )
-  expect_identical(cond_transpose("cis, des, ees, f,",lowest='d,'),"c# c# d#, f," )
-  expect_identical(cond_transpose("cis, desees, ees, f,",lowest='d,'), "c# c#d#, d#, f," )
-  expect_identical(cond_transpose("cis, des,ees, ees, f,",lowest='d,'),"c# c#d#, d#, f,")
-  expect_identical(cond_transpose("c2 dis2 e2 f2",lowest='e2',numeric=T),"c3 d#3 e2 f2")
+  expect_identical(cond_transpose("cis, des, ees, f,"),
+                   "c# c# d# f," )
+  expect_identical(cond_transpose("cis, des, ees, f,",lowest='d,'),
+                   "c# c# d#, f," )
+  expect_identical(cond_transpose("cis, desees, ees, f,",lowest='d,'),
+                   "c# c#d#, d#, f," )
+  expect_identical(cond_transpose("cis, des,ees, ees, f,",lowest='d,'),
+                   "c# c#d#, d#, f,")
+  expect_identical(cond_transpose("c2 dis2 e2 f2",lowest='e2',numeric=T),
+                   "c3 d#3 e2 f2")
+  expect_identical(cond_transpose("d4 a3 g#4 ^1 a3b3f4",lowest='d4',numeric=T),
+                   "d4 a4 g#4 ^1 a4b4f4")
 })
 

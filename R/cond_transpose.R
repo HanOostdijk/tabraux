@@ -14,8 +14,8 @@
 #' #  [1] "c d e, f,"
 #'   cond_transpose("c, d, e, f,",lowest='d,')
 #' #  [1] "c d, e, f,"
-#' cond_transpose("c2 d2 e2 f2",lowest='e2',numeric=T)
-#' #  [1] "c d, e, f,"
+#'   cond_transpose("d4 a3 g#4 ^1 a3b3f4",lowest='d4',numeric=T)
+#' # [1] "d4 a4 g#4 ^1 a4b4f4"
 #' }
 
 cond_transpose <- function (notes, lowest="e,",numeric=F) {
@@ -40,9 +40,12 @@ cond_transpose <- function (notes, lowest="e,",numeric=F) {
   # then do chords
   mn2 <- mn[!mn1tf]
   mn2 <- purrr::map_chr (mn2, function(x) {
-    mn2a <-
-      unlist(stringr::str_extract_all(mn2, "[abcdefg][^abcdefg]{0,2}"))
-    paste0(cond_transpose1(mn2a, me, f1, f2), collapse = '')
+    mn2a <- unlist(stringr::str_extract_all(x, "[abcdefg][^abcdefg]{0,2}"))
+    if (length(mn2a) > 0) {
+      paste0(cond_transpose1(mn2a, me, f1, f2), collapse = '')
+    } else {
+      x
+    }
   })
   mn[!mn1tf] <- mn2
 
